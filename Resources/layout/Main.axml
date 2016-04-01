@@ -4,8 +4,25 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <Button
+        android:id="@+id/Exit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit" />
+    <Button
         android:id="@+id/MyButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/QR" />
+    <TextView
+        android:text="nix"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <TextView
+        android:text="nix"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
 </LinearLayout>

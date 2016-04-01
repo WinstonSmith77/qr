@@ -25,10 +25,19 @@ namespace qr
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
+            var button = FindViewById<Button>(Resource.Id.MyButton);
 
             button.Click += Button_Click;
-            
+
+            button = FindViewById<Button>(Resource.Id.Exit);
+
+            button.Click += ExitClick; ;
+
+        }
+
+        private void ExitClick(object sender, EventArgs e)
+        {
+            this.Finish();
         }
 
         private async void Button_Click(object sender, EventArgs e)
@@ -36,8 +45,9 @@ namespace qr
             var scanner = new MobileBarcodeScanner();
             var result = await scanner.Scan();
 
-            if (result != null)
-                Console.WriteLine("Scanned Barcode: " + result.Text);
+            FindViewById<TextView>(Resource.Id.textView1).Text = result.BarcodeFormat.ToString();
+            FindViewById<TextView>(Resource.Id.textView2).Text = result.Text;
+
         }
     }
 }
