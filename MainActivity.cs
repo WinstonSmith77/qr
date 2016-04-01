@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ZXing.Mobile;
 
 namespace qr
 {
@@ -17,6 +18,8 @@ namespace qr
         {
             base.OnCreate(bundle);
 
+             MobileBarcodeScanner.Initialize(Application);
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
@@ -24,7 +27,17 @@ namespace qr
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            button.Click += Button_Click;
+            
+        }
+
+        private async void Button_Click(object sender, EventArgs e)
+        {
+            var scanner = new MobileBarcodeScanner();
+            var result = await scanner.Scan();
+
+            if (result != null)
+                Console.WriteLine("Scanned Barcode: " + result.Text);
         }
     }
 }
